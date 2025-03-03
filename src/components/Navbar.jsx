@@ -3,14 +3,17 @@ import gsap from 'gsap'
 import { useWindowScroll } from 'react-use'
 import { useEffect, useRef, useState } from 'react'
 import { TiLocationArrow } from 'react-icons/ti'
+
 import Button from './Button'
 
 const navItems = ['Nexus', 'Vault', 'Prologue', 'About', 'Contact']
 
-const Navbar = () => {
+const NavBar = () => {
+  // State for toggling audio and visual indicator
   const [isAudioPlaying, setIsAudioPlaying] = useState(false)
   const [isIndicatorActive, setIsIndicatorActive] = useState(false)
 
+  // Refs for audio and navigation container
   const audioElementRef = useRef(null)
   const navContainerRef = useRef(null)
 
@@ -18,11 +21,13 @@ const Navbar = () => {
   const [isNavVisible, setIsNavVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
 
+  // Toggle audio and visual indicator
   const toggleAudioIndicator = () => {
     setIsAudioPlaying(prev => !prev)
     setIsIndicatorActive(prev => !prev)
   }
 
+  // Manage audio playback
   useEffect(() => {
     if (isAudioPlaying) {
       audioElementRef.current.play()
@@ -33,12 +38,15 @@ const Navbar = () => {
 
   useEffect(() => {
     if (currentScrollY === 0) {
+      // Topmost position: show navbar without floating-nav
       setIsNavVisible(true)
       navContainerRef.current.classList.remove('floating-nav')
     } else if (currentScrollY > lastScrollY) {
+      // Scrolling down: hide navbar and apply floating-nav
       setIsNavVisible(false)
       navContainerRef.current.classList.add('floating-nav')
     } else if (currentScrollY < lastScrollY) {
+      // Scrolling up: show navbar with floating-nav
       setIsNavVisible(true)
       navContainerRef.current.classList.add('floating-nav')
     }
@@ -116,4 +124,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default NavBar
