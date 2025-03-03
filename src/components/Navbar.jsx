@@ -1,15 +1,15 @@
-import { useEffect, useRef, useState } from 'react'
 import clsx from 'clsx'
 import gsap from 'gsap'
 import { useWindowScroll } from 'react-use'
+import { useEffect, useRef, useState } from 'react'
 import { TiLocationArrow } from 'react-icons/ti'
 import Button from './Button'
 
 const navItems = ['Nexus', 'Vault', 'Prologue', 'About', 'Contact']
 
 const Navbar = () => {
-  const [isAudioPlaying, setIsAudioPlaying] = useState(true) // Start playing on load
-  const [isIndicatorActive, setIsIndicatorActive] = useState(true)
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false)
+  const [isIndicatorActive, setIsIndicatorActive] = useState(false)
 
   const audioElementRef = useRef(null)
   const navContainerRef = useRef(null)
@@ -22,29 +22,6 @@ const Navbar = () => {
     setIsAudioPlaying(prev => !prev)
     setIsIndicatorActive(prev => !prev)
   }
-
-  useEffect(() => {
-    const audio = audioElementRef.current
-
-    const playAudio = () => {
-      if (audio) {
-        audio
-          .play()
-          .then(() => setIsAudioPlaying(true))
-          .catch(err => console.error('Autoplay failed:', err))
-      }
-    }
-
-    // Try playing the audio when the component mounts
-    playAudio()
-
-    // Ensure autoplay works after user interaction
-    document.addEventListener('click', playAudio, { once: true })
-
-    return () => {
-      document.removeEventListener('click', playAudio)
-    }
-  }, [])
 
   useEffect(() => {
     if (isAudioPlaying) {
