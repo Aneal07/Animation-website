@@ -8,7 +8,7 @@ import Button from './Button'
 const navItems = ['Nexus', 'Vault', 'Prologue', 'About', 'Contact']
 
 const Navbar = () => {
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false)
+  const [isAudioPlaying, setIsAudioPlaying] = useState(true)
   const [isIndicatorActive, setIsIndicatorActive] = useState(false)
 
   const audioElementRef = useRef(null)
