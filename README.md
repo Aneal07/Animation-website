@@ -12,7 +12,7 @@ This is a visually engaging **Animation Website** built with modern web technolo
 ## 🛠️ Technologies Used
 - **HTML5** – Structure and content.
 - **TailwindCSS(Animations & Transitions)** – Styling and effects.
-- **JavaScript (GSAP o/ Vanilla JS)** – Interactive animations.
+- **JavaScript (GSAP / Vanilla JS)** – Interactive animations.
 - **GitHub Pages 
 
 
